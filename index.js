@@ -15,5 +15,5 @@ server.get('/', (req, res) => {
 const PORT = process.env.PORT || 5000;
 
 server.listen(PORT, () => {
-  console.log(`\n ** LISTENDING ON PORT ${PORT} ** \n`);
+  console.log(`\n ** LISTENING ON PORT ${PORT} ** \n`);
 });

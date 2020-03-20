@@ -36,9 +36,10 @@ function findTasks(id) {
 }
 
 function findTasksByProj(id) {
-  return db('tasks').join('projects', 'projects.id', 'tasks.project_id')
-    .select('tasks.id', 'projects.name', 'projects.description', 'tasks.description', 'tasks.notes', 'tasks.completed')
-    .where('tasks.project_id', id);
+  return db('tasks')
+    .join('projects', 'projects.id', 'tasks.project_id')
+    .select('tasks.id', 'projects.name', 'projects.description', 'tasks.description', 'tasks.notes', 'tasks.completed', 'tasks.project_id')
+    .where('project_id', id);
 }
 
 function add(project) {

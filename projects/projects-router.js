@@ -79,16 +79,17 @@ router.get('/projects/:id/tasks', (req, res) => {
   });
 });
 
-router.post('/tasks', (req, res) => {
+router.post('/projects/:id/tasks', (req, res) => {
   const taskData = req.body;
   const { id } = req.params;
+  taskData.project_id = id;
 
-  Projects.addTask(id)
-  .then(tasks => {
+  Projects.addTask(taskData)
+  .then(task => {
     res.status(201).json(task);
   })
   .catch (err => {
-    res.status(500).json({ message: 'Failed to create new task' });
+    res.status(500).json({ message: 'Failed to create new task', err: err });
   });
 })
 

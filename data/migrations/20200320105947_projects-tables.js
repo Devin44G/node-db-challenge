@@ -9,7 +9,8 @@ exports.up = function(knex) {
         .unique()
         .notNullable();
 
-      tbl.text('description', 500);
+      tbl.text('description', 500)
+        .defaultTo('');
 
       tbl.boolean('completed')
         .notNullable()
@@ -32,7 +33,11 @@ exports.up = function(knex) {
       tbl.text('description', 500)
         .notNullable();
 
-      tbl.text('notes', 800);
+      tbl.text('notes', 800)
+        .defaultTo('');
+
+      tbl.boolean('completed')
+        .defaultTo(false);
 
       tbl.integer('project_id')
         .unsigned()
@@ -46,7 +51,7 @@ exports.up = function(knex) {
     .createTable('project_resources', tbl => {
       tbl.primary(['project_id', 'resource_id']);
 
-      tbl.integer('product_id')
+      tbl.integer('project_id')
         .unsigned()
         .notNullable()
         .references('id')
